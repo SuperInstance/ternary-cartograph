@@ -87,3 +87,11 @@ Part of the SuperInstance ternary fleet. Related crates:
 ## License
 
 MIT
+
+## See Also
+- **ternary-navigator** — related
+- **ternary-compass** — related
+- **ternary-observatory** — related
+- **ternary-beacon** — related
+- **ternary-frontier** — related
+
