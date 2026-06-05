@@ -1,0 +1,6 @@
+[package]
+name = "ternary-cartograph"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Mapping and spatial representation for fleet topology visualization"
