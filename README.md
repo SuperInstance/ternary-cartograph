@@ -82,6 +82,33 @@ Ternary Cartograph provides the spatial visualization layer for fleet operators 
 
 See [ARCHITECTURE.md](https://github.com/SuperInstance/SuperInstance/blob/main/ARCHITECTURE.md) for fleet topology.
 
+
+### Projection Modes
+
+- **Geographic**: Map lat/lon to Point2D via equirectangular projection: `x = lon × R × cos(lat₀), y = lat × R` where R = Earth radius
+- **Topological**: Position rooms by network hop count rather than physical distance — captures latency-relevant structure
+- **Force-directed**: Layout rooms with spring forces: attractive (connected rooms pull together) and repulsive (all pairs push apart). Per iteration: **O(N²)** all-pairs repulsion. Convergence: typically 50-500 iterations.
+
+### Spatial Queries
+
+```
+nearest_room(point) → Option<room_id>:
+    linear scan O(N) or quadtree O(log N)
+
+rooms_in_region(region) → Vec<room_id>:
+    linear scan O(N) or quadtree O(log N + K) for K results
+```
+
+### Agent Density Heatmap
+
+The FleetMap tracks agent density per region:
+
+```
+density(region) = agent_count / region.area
+```
+
+Enables hotspot detection: regions with density > 2σ from mean are overloaded.
+
 ## References
 
 1. Tobler, W. R. (1970). "A Computer Movie Simulating Urban Growth in the Detroit Region." *Economic Geography*, 46, 234–240. (First Law of Geography)
